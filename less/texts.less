@@ -1,0 +1,16 @@
+.font-size(@sizeValue) {
+	@remValue: @sizeValue/16;
+	font-size: ~"@{remValue}rem";
+}
+.line-height(@sizeValue) {
+	@remValue: @sizeValue/16;
+	line-height: ~"@{remValue}rem";
+}
+
+
+.t-a{
+	font-family: "Helvetica";
+	font-weight: normal;
+	.font-size(13);
+	.line-height(16);
+}
