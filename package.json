@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --hot --inline --content-base public/ --port 9088",
+    "dev": "rm -rf public/dist && webpack-dev-server --hot --inline --content-base public/ --port 9088 --host 0.0.0.0",
     "build": "webpack --config webpack.prod.config.js",
-    "push": "git push gyde master",
     "postinstall": "npm run build"
   },
   "dependencies": {
