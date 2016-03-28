@@ -14,22 +14,12 @@ class Home extends Component {
   }
 	render() {
 		return (
-		  <div>
+		  <div className={style.root}>
         <HomeContent></HomeContent>
 		  </div>
 		)
 	}
 }
 
-// Which props do we want to inject, given the global state?
-// Note: use https://github.com/faassen/reselect for better performance.
-function mapStateToProps(state) {
-  return {
-    cats: state.catlist,
-    isHome:(state.routing.location.pathname == '/')
-  }
-}
 
-const conectedApp = connect(mapStateToProps)(Home);
-
-export default conectedApp;
+export default Home;

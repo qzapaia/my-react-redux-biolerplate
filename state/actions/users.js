@@ -1,7 +1,7 @@
 import reduxCrud  from 'redux-crud';
 import { createAction } from 'redux-actions';
 
-const name = 'faqs';
+const name = 'users';
 
 var actionTypes = reduxCrud.actionTypesFor(name);
 var standardActionCreators = reduxCrud.actionCreatorsFor(name);

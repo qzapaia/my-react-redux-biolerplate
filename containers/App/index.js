@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import servicesActions from '../../state/actions/services'
-import faqsActions from '../../state/actions/faqs'
+import usersActions from '../../state/actions/users'
 
 import style from "./styles.less";
 
@@ -15,17 +14,15 @@ class App extends Component {
     super(props);
   }
   componentWillMount(){
-  	this.props.servicesActions.fetch();
-  	this.props.faqsActions.fetch();
+  	this.props.usersActions.fetch();
   }
 	render() {
 		const { dispatch, cats } = this.props
 
 		return (
-		  <div>
+		  <div className={style.root}>
 
-		    
-		    <div className="content">
+		    <div>
 	        {this.props.children}
 	      </div>
 
@@ -37,18 +34,14 @@ class App extends Component {
 
 function mapStateToProps(state) {
 	return {
-		isSignup:(state.routing.location.pathname == '/signup')
+		users:state.users
 	}
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    servicesActions: bindActionCreators(servicesActions, dispatch),
-    faqsActions: bindActionCreators(faqsActions, dispatch)
+    usersActions: bindActionCreators(usersActions, dispatch)
   };
 }
 
-
-const conectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
-
-export default conectedApp;
+export default conectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
