@@ -1,16 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import style from "./styles.less";
 import classNames from 'classnames';
 
 
-export default class HomeContent extends Component {
+class HomeContent extends Component {
+	constructor(props){
+		super(props);
+
+		this.state = { }
+	}
 	render() {
-		let className = classNames(style.root,this.props.className);
+		const className = classNames(style.root,this.props.className);
 
 		return (
-		    <div {...this.props} className={className} >
-		    	Home content
-		    </div>
+	    <div {...this.props} className={className} >
+	    	HomeContent Component
+	    </div>
 		)
 	}
 }
+
+HomeContent.defaultProps = { }
+
+export default HomeContent;
