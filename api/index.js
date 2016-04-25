@@ -1,31 +1,26 @@
-import superagentPromisePlugin from 'superagent-promise-plugin';
-import defaults from 'superagent-defaults';
+import object from 'lodash/fp/object';
+import axios from 'axios';
 
 const dev = process.env.NODE_ENV == 'development';
-const stagingHost = 'http://jsonplaceholder.typicode.com';
-const prodHost = 'http://jsonplaceholder.typicode.com';
+const host = process.env.API_HOSTNAME || 'http://jsonplaceholder.typicode.com';
 
-const host = dev ? stagingHost : prodHost;
+axios.defaults.baseURL = host;
 
-var superagent = defaults();
-
-superagent.use(superagentPromisePlugin);
-
-superagent.use(function(req){
+axios.interceptors.request.use(function (config) {
 	if(localStorage.getItem('token')){
-		req.set({
-			Authorization: 'Bearer ' + localStorage.getItem('token')
-		});
+		config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('token')
 	}
+  return config;
 });
-
-superagent.on('request',function(req){
-	req.url = host+req.url;
+ 
+axios.interceptors.response.use(function (response) {
+  return response.data;
 });
 
 export default {
-	getUsers(){
-		return superagent.get('/users')
-										 .end();
+	getUsers(data){	
+		return axios.get('/users');
 	}
 };
+
+window.api = module.exports.default;

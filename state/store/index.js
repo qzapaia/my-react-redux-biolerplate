@@ -1,17 +1,9 @@
-import { compose, createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import thunkMiddleware from 'redux-thunk';
-
-import { browserHistory } from 'react-router';
-import { syncHistory } from 'redux-simple-router';
-
+import persistState from 'redux-localstorage';
+import { compose, createStore, applyMiddleware } from 'redux';
 
 import reducer from '../reducers';
-
-import persistState from 'redux-localstorage';
-
-// reduxRouterMiddleware dispatched route actions to the history 
-const reduxRouterMiddleware = syncHistory(browserHistory)
 
 const createPersistentStore = compose(
   persistState()
@@ -19,8 +11,7 @@ const createPersistentStore = compose(
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware,
-  promiseMiddleware,
-  reduxRouterMiddleware
+  promiseMiddleware
 )(createPersistentStore)
 
 

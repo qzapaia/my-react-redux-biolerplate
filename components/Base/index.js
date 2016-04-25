@@ -1,22 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import style from "./styles.less";
 import classNames from 'classnames';
 
 
-export default class Base extends Component {
+class Base extends Component {
 	constructor(props){
 		super(props);
 
-		// initialize state (es6 way)
-		this.state={}
+		this.state = { }
 	}
 	render() {
-		let className = classNames(style.root,this.props.className);
+		const className = classNames(style.root,this.props.className);
 
 		return (
-		    <div {...this.props} className={className} >
-		    	Base Component - Duplicate this folder in order to create new components
-		    </div>
+	    <div {...this.props} className={className} >
+	    	Base Component - Duplicate this folder in order to create new components
+	    </div>
 		)
 	}
 }
+
+Base.defaultProps = { }
+
+export default Base;

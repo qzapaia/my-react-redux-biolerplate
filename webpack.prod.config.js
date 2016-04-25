@@ -1,11 +1,18 @@
-var merge = require('webpack-merge');
-var baseConfig = require('./webpack.config');
+var path = require("path");
+var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
-var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-module.exports = merge.smart(baseConfig, {
+module.exports = {
+    context: __dirname,
+    entry: [
+        "./index.js"
+    ],
+    output: {
+        path: path.resolve(__dirname + "/public/dist"),
+        filename: "bundle.js"
+    },
     module: {
         loaders:[{
             test: /\.less$/,
@@ -14,7 +21,7 @@ module.exports = merge.smart(baseConfig, {
         {
             test: /\.js?$/,
             exclude: /(node_modules|bower_components)/,
-            loader: 'babel', // 'babel-loader' is also a legal name to reference
+            loader: 'babel', 
             query: {
                 presets: ['react', 'es2015']
             }
@@ -29,7 +36,7 @@ module.exports = merge.smart(baseConfig, {
         }),
         new webpack.DefinePlugin({
           'process.env': {
-            'NODE_ENV': '"production"'
+            'NODE_ENV': JSON.stringify('production')
           }
         })
     ],
@@ -37,4 +44,4 @@ module.exports = merge.smart(baseConfig, {
         autoprefixer({ browsers: ['last 2 versions'] }), 
         cssnano() 
     ]
-});
+};

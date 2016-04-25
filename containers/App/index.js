@@ -44,4 +44,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default conectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
